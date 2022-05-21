@@ -1,0 +1,13 @@
+{
+    "name": "level-1",
+    "children": [
+        {
+            "name": "file-1.txt",
+            "children": []
+        },
+        {
+            "name": "file-2.bin",
+            "children": []
+        }
+    ]
+}
