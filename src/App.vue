@@ -8,11 +8,15 @@ export default {
   data() {
     return {
       catalog: {
-    "name": "lev",
+    "name": "directory-1st-level",
     "children": [
         {
             "name": "file-1.txt",
-            "children": []
+            "children": [
+              {"name": "directory-2nd-level",
+                "children": []
+              }
+            ]
         },
         {
             "name": "file-2.bin",
@@ -30,12 +34,4 @@ export default {
 </template>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
