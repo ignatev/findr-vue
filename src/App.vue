@@ -7,7 +7,7 @@ export default {
   },
   data() {
     return {
-      catalog: {
+      catalog: [{
     "name": "directory-1st-level",
     "children": [
         {
@@ -20,10 +20,31 @@ export default {
         },
         {
             "name": "file-2.bin",
+            "children": [
+              {
+            "name": "file-2-3.bin",
+            "children": []
+        },
+        {
+            "name": "file-2-3.bin",
+            "children": [
+              {
+            "name": "file-2.bin",
+            "children": [
+              {
+            "name": "file-2.bin",
             "children": []
         }
+            ]
+        }
+              
+            ]
+        }
+              
+            ]
+        }
     ]
-}
+}]
     }
   }
 }

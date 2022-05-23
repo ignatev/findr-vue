@@ -1,29 +1,39 @@
 <template>
-    <div :style="indent">{{ catalog.name }}</div>
-    <div v-if=catalog.children.length>
-    <file-viewer v-for="file in catalog.children" :depth="depth+1" :catalog="file" :key="file.name"></file-viewer>
-</div>
+    <div class="file-viewer">
+        <div class="column">
+            <div v-for="child in catalog" :key="child.name" @click="listChild(child, 0)">{{child.name}}</div>
+        </div>
+        <div v-for="(c, index) in count" :key=c class="column">
+            <div v-for="child in columns[index]" :key="child.name" @click="listChild(child, index+1)">{{child.name}}</div>
+        </div>
+    </div>
 </template>
 
 <script>
 export default {
+    methods: {
+        listChild(child, index) {
+            if (child.children.length) {
+                for (let i = index; i <= Object.keys(this.columns).length; i+=1) {
+                    delete this.columns[i]
+                }
+                this.count = index + 1
+                this.columns[index] = child.children
+            }
+        }
+    },
+    data() {
+        return {
+            count: 1,
+            columns: {},
+        }
+        
+    },
     name: "FileViewer",
     props: {
         catalog: {
-            type: Object,
+            type: Array,
             required: true,
-        },
-        depth: {
-            type: Number,
-            required: false,
-            default: 0
-        }
-    },
-    computed: {
-        indent() {
-            return {
-                transform: `translate(${this.depth * 50}px)`
-            }
         }
     }
 }
@@ -31,5 +41,11 @@ export default {
 </script>
 
 <style>
-
+.file-viewer {
+    display: flex;
+    overflow-y: auto;
+}
+.column {
+    width: 300px;
+}
 </style>
