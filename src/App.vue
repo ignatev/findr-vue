@@ -8,14 +8,12 @@ export default {
   },
   data() {
     return {
-      catalog: []
-    
+      catalog: {}
     }
   },
   async created() {
     try {
       const data = await api.getCatalog()
-      console.log(data)
       this.catalog = data
     } catch(e) {
       console.log(e)

@@ -1,26 +1,26 @@
 <template>
     <div class="file-viewer">
         <div class="column">
-            <div v-for="child in catalog" :key="child.name" @click="listChild(child, 0)">{{child.name}}</div>
+            <div v-for="(item, key) in catalog" :key="key" @click="listChild(item, 0)">{{key}}</div>
         </div>
         <div v-for="(c, index) in count" :key=c class="column">
-            <div v-for="child in columns[index]" :key="child.name" @click="listChild(child, index+1)">{{child.name}}</div>
+            <div v-for="(item, key) in columns[index]" :key="key" @click="listChild(item, index+1)">{{key}}</div>
         </div>
     </div>
 </template>
 
 <script>
-import axios from "axios"
+
 
 export default {
     methods: {
         listChild(child, index) {
-            if (child.children.length) {
+            if (child.length) {
                 for (let i = index; i <= Object.keys(this.columns).length; i+=1) {
                     delete this.columns[i]
                 }
                 this.count = index + 1
-                this.columns[index] = child.children
+                this.columns[index] = child
             }
         }
     },
@@ -34,7 +34,7 @@ export default {
     name: "FileViewer",
     props: {
         catalog: {
-            type: Array,
+            type: Object,
             required: true,
         }
     }
