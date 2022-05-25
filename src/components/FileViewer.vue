@@ -1,7 +1,7 @@
 <template>
     <div class="file-viewer">
         <div class="column">
-            <div v-for="(item, key) in catalog" :key="key" @click="listChild(item, 0)">{{key}}</div>
+            <div v-for="(item, key) in catalog.data" :key="key" @click="listChild(item, 0)">{{key}}</div>
         </div>
         <div v-for="(c, index) in count" :key=c class="column">
             <div v-for="(item, key) in columns[index]" :key="key" @click="listChild(item, index+1)">{{key}}</div>
@@ -11,11 +11,11 @@
 
 <script>
 
-
 export default {
     methods: {
         listChild(child, index) {
-            if (child.length) {
+            console.log(child)
+            if (child.type == "dir") {
                 for (let i = index; i <= Object.keys(this.columns).length; i+=1) {
                     delete this.columns[i]
                 }
@@ -27,7 +27,7 @@ export default {
     data() {
         return {
             count: 1,
-            columns: {},
+            columns: [],
         }
         
     },
