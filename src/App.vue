@@ -1,5 +1,6 @@
 <script>
 import FileViewer from './components/FileViewer.vue'
+import api from './api'
 
 export default {
   components: {
@@ -7,44 +8,17 @@ export default {
   },
   data() {
     return {
-      catalog: [{
-    "name": "directory-1st-level",
-    "children": [
-        {
-            "name": "file-1.txt",
-            "children": [
-              {"name": "directory-2nd-level",
-                "children": []
-              }
-            ]
-        },
-        {
-            "name": "file-2.bin",
-            "children": [
-              {
-            "name": "file-2-3.bin",
-            "children": []
-        },
-        {
-            "name": "file-2-3.bin",
-            "children": [
-              {
-            "name": "file-2.bin",
-            "children": [
-              {
-            "name": "file-2.bin",
-            "children": []
-        }
-            ]
-        }
-              
-            ]
-        }
-              
-            ]
-        }
-    ]
-}]
+      catalog: []
+    
+    }
+  },
+  async created() {
+    try {
+      const data = await api.getCatalog()
+      console.log(data)
+      this.catalog = data
+    } catch(e) {
+      console.log(e)
     }
   }
 }

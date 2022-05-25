@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import axios from "axios"
+
 export default {
     methods: {
         listChild(child, index) {
