@@ -3,7 +3,7 @@ import axios from 'axios';
 export default class RestClient{
     constructor() {
         this.instance = axios.create({
-          baseURL: "http://localhost:8080/api/",
+          baseURL: "http://localhost:8080/api/file/",
           timeout: 1000,
         });
     }
